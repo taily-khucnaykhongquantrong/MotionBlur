@@ -42,9 +42,20 @@ def LinearMotionBlur(imgarray, dim, angle, linetype):
         Returning value.
     """
     kernel = LineKernel(dim, angle, linetype)
-    convolved = convolve2d(imgarray, kernel, mode="same", fillvalue=255.0).astype(
-        "uint8"
-    )
+    if imgarray.ndim == 3 and imgarray.shape[-1] == 3:
+        convolved = np.stack(
+            [
+                convolve2d(
+                    imgarray[..., channel_id], kernel, mode="same", fillvalue=255.0
+                ).astype("uint8")
+                for channel_id in range(3)
+            ],
+            axis=2,
+        )
+    else:
+        convolved = convolve2d(imgarray, kernel, mode="same", fillvalue=255.0).astype(
+            "uint8"
+        )
     img = Image.fromarray(convolved)
     return img
 

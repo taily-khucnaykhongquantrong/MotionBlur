@@ -56,8 +56,7 @@ def LinearMotionBlur(imgarray, dim, angle, linetype):
         convolved = convolve2d(imgarray, kernel, mode="same", fillvalue=255.0).astype(
             "uint8"
         )
-    img = Image.fromarray(convolved)
-    return img
+    return convolved
 
 
 def LineKernel(dim, angle, linetype):

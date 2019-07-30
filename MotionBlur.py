@@ -19,8 +19,18 @@ def LinearMotionBlur_random(img):
     lineAngle = randomAngle(lineLength)
     return LinearMotionBlur(img, lineLength, lineAngle, lineType)
 
-def LinearMotionBlur(img, dim, angle, linetype):
-    imgarray = np.array(img, dtype="float32")
+def LinearMotionBlur(imgarray, dim, angle, linetype):
+    """Return an motion blurred image in ndarray type
+    
+    Parameters:
+    imgarray (ndarray): Input image
+    dim (int): size of kernel {3, 5, 7, 9}
+    angle (int): which direction the image is blurred
+    linetype (str): Controls whether the blur kernel will be applied in full or only the left/right halves of it {left, right, full}
+
+    Returns:
+    ndarray:Returning value
+    """
     kernel = LineKernel(dim, angle, linetype)
     convolved = convolve2d(imgarray, kernel, mode='same', fillvalue=255.0).astype("uint8")
     img = Image.fromarray(convolved)

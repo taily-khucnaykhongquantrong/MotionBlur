@@ -1,4 +1,5 @@
 import math
+
 import numpy as np
 from PIL import Image
 from scipy.signal import convolve2d
@@ -59,7 +60,7 @@ def LinearMotionBlur(imgarray, dim, angle, linetype):
     return convolved
 
 
-def LineKernel(dim, angle, linetype):
+def LineKernel(dim, angle, linetype="full"):
     kernelwidth = dim
     kernelCenter = int(math.floor(dim / 2))
     angle = SanitizeAngleValue(kernelCenter, angle)

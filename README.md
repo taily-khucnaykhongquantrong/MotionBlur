@@ -1,5 +1,5 @@
 # MotionBlur
-Motion Blur in python, code samples from https://github.com/lospooky/pyblur
+Motion Blur in python, code samples from https://github.com/lospooky/pyblur. This project adds customize kernel size capability comparing to the original one.    
 
 ## Example codes:
 ```python
